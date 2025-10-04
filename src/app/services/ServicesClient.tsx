@@ -4,29 +4,20 @@ import { motion, Variants } from 'framer-motion';
 import dynamic from 'next/dynamic';
 import { Button } from "@/components/ui/button";
 import { services, industries } from "@/data/services";
-import { 
-  ChevronRight, 
-  ArrowRight, 
-  Zap, 
-  Code, 
-  Database, 
-  Cpu, 
-  GitBranch, 
-  Terminal, 
-  MessageSquare, 
-  Server, 
-  Check, 
-  Code2, 
-  Cloud, 
-  Smartphone, 
-  BarChart3, 
-  BrainCircuit, 
-  Globe, 
-  Sparkles,
+import {
+  ArrowRight,
+  Zap,
+  Code,
+  Database,
+  Cpu,
+  Check,
+  Cloud,
+  Smartphone,
+  BarChart3,
+  BrainCircuit,
   UserCog,
-  Cpu as ApiIcon,
   Workflow,
-  Code2 as WebDevIcon
+  Code2 as WebDevIcon,
 } from "lucide-react";
 import { ParticlesField } from "@/components/ParticlesField";
 import TechStackCarousel from "@/components/TechStackCarousel";
@@ -62,7 +53,7 @@ export default function ServicesClient() {
         <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 h-full">
           <div className="h-full flex flex-col lg:flex-row items-center justify-between gap-8 py-12 lg:py-0">
             {/* Left side - Content */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
@@ -88,7 +79,7 @@ export default function ServicesClient() {
             {/* Right side - Cubes animation */}
             <div className="relative w-full lg:w-[40%] h-[300px] lg:h-[450px] flex items-center justify-center">
               <div className="relative w-full h-full">
-                <Cubes 
+                <Cubes
                   gridSize={6}
                   maxAngle={30}
                   radius={2.5}
@@ -107,7 +98,7 @@ export default function ServicesClient() {
       {/* Services Section */}
       <section id="services" className="py-16 bg-muted/10">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -122,7 +113,7 @@ export default function ServicesClient() {
               Empowering your business with cutting-edge technology solutions tailored to your unique needs
             </p>
           </motion.div>
-          
+
           <div className="grid md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-6">
             {services.map((service, index) => (
               <motion.div
@@ -136,7 +127,7 @@ export default function ServicesClient() {
                 <div className="flex items-center gap-3 mb-4">
                   <div className="bg-primary/10 p-2.5 rounded-lg text-primary flex-shrink-0">
                     {service.iconName === 'UserCog' && <UserCog className="h-6 w-6" />}
-                    {service.iconName === 'ApiIcon' && <ApiIcon className="h-6 w-6" />}
+                    {service.iconName === 'ApiIcon' && <Cpu className="h-6 w-6" />}
                     {service.iconName === 'Workflow' && <Workflow className="h-6 w-6" />}
                     {service.iconName === 'WebDevIcon' && <WebDevIcon className="h-6 w-6" />}
                     {service.iconName === 'AiIcon' && <BrainCircuit className="h-6 w-6" />}
@@ -164,7 +155,7 @@ export default function ServicesClient() {
           </div>
 
           {/* Tech Stack Section */}
-          <motion.div 
+          <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
@@ -188,7 +179,7 @@ export default function ServicesClient() {
       <section className="relative py-0 min-h-screen flex items-center justify-center overflow-hidden bg-background">
         <ParticlesField />
         <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col justify-center">
-          <motion.div 
+          <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
@@ -204,8 +195,8 @@ export default function ServicesClient() {
               Tailored technology solutions for your industry&apos;s unique challenges
             </p>
           </motion.div>
-          
-          <motion.div 
+
+          <motion.div
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
@@ -219,13 +210,13 @@ export default function ServicesClient() {
                 'from-amber-500/10 to-amber-500/5'
               ];
               const color = colors[index % colors.length];
-              
+
               return (
-                <motion.div 
-                  key={index} 
+                <motion.div
+                  key={index}
                   variants={fadeInUp}
-                  whileHover={{ 
-                    y: -8, 
+                  whileHover={{
+                    y: -8,
                     scale: 1.02
                   }}
                   transition={{ duration: 0.3 }}
@@ -252,7 +243,7 @@ export default function ServicesClient() {
       <section className="relative pt-8 pb-16 md:pt-12 md:pb-20 min-h-[40vh] flex items-center justify-center overflow-hidden bg-muted/5">
         <ParticlesField />
         <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -264,7 +255,7 @@ export default function ServicesClient() {
             <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
               Schedule a free consultation to discuss your project needs.
             </p>
-            <Button size="lg" className="gap-2 group" onClick={() => window.location.href = '/contact'>
+            <Button size="lg" className="gap-2 group" onClick={() => (window.location.href = '/contact')}>
               Get in Touch
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Button>
