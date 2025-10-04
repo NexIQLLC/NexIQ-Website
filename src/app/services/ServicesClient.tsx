@@ -82,17 +82,6 @@ export default function ServicesClient() {
                 We craft custom digital solutions that drive growth, efficiency, and innovation for forward-thinking businesses.
               </p>
               <div className="flex flex-wrap gap-4">
-                <Button 
-                  variant="default" 
-                  size="lg" 
-                  className="gap-2 group"
-                  onClick={() => {
-                    const contactSection = document.getElementById('contact-section');
-                    contactSection?.scrollIntoView({ behavior: 'smooth' });
-                  }}
-                >
-                  Get Started
-                </Button>
               </div>
             </motion.div>
 
@@ -275,7 +264,7 @@ export default function ServicesClient() {
             <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
               Schedule a free consultation to discuss your project needs.
             </p>
-            <Button size="lg" className="gap-2 group">
+            <Button size="lg" className="gap-2 group" onClick={() => window.location.href = '/contact'>
               Get in Touch
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Button>
