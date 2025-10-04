@@ -1,0 +1,233 @@
+'use client';
+
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { ArrowRight, Check, Zap, Code, Database, Cpu, GitBranch, Users, Award, Globe, TrendingUp, Target, Shield } from "lucide-react";
+import { HeroSection } from "@/components/HeroSection";
+import TechStackCarousel from "@/components/TechStackCarousel";
+import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
+import { ParticlesField } from "@/components/ParticlesField";
+
+export default function Home() {
+  return (
+    <div className="flex flex-col">
+      <HeroSection />
+      
+      {/* Hero Image with Overlay */}
+      <motion.div 
+        className="relative w-full h-[60vh] overflow-hidden"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ 
+          opacity: 1, 
+          y: 0,
+          transition: { 
+            duration: 0.8,
+            ease: [0.16, 1, 0.3, 1]
+          }
+        }}
+        viewport={{ once: true, margin: "-100px 0px" }}
+      >
+        <motion.div 
+          className="absolute inset-0"
+          initial={{ scale: 1.1 }}
+          whileInView={{ 
+            scale: 1,
+            transition: { 
+              duration: 1.2, 
+              ease: [0.16, 1, 0.3, 1]
+            }
+          }}
+          viewport={{ once: true }}
+        >
+          <img
+            src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
+            alt="MacBook with code on screen"
+            className="w-full h-full object-cover filter blur-sm"
+            loading="lazy"
+          />
+          <motion.div 
+            className="absolute inset-0 bg-black/40 backdrop-blur-[1px]"
+            initial={{ opacity: 0 }}
+            whileInView={{ 
+              opacity: 1,
+              transition: { 
+                duration: 0.8,
+                delay: 0.3
+              }
+            }}
+            viewport={{ once: true }}
+          />
+        </motion.div>
+        <motion.div 
+          className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col justify-center text-white"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ 
+            opacity: 1, 
+            y: 0,
+            transition: { 
+              staggerChildren: 0.1,
+              duration: 0.6,
+              ease: [0.16, 1, 0.3, 1]
+            }
+          }}
+          viewport={{ once: true, margin: "-100px 0px" }}
+        >
+          <motion.h1 
+            className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ 
+              opacity: 1, 
+              y: 0,
+              transition: { 
+                duration: 0.6,
+                ease: [0.16, 1, 0.3, 1]
+              }
+            }}
+            viewport={{ once: true }}
+          >
+            Transforming ideas into <span className="text-primary">Digital Reality</span>
+          </motion.h1>
+          <motion.p 
+            className="text-xl md:text-2xl text-gray-200 mt-6"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ 
+              opacity: 1, 
+              y: 0,
+              transition: { 
+                duration: 0.6,
+                delay: 0.1,
+                ease: [0.16, 1, 0.3, 1]
+              }
+            }}
+            viewport={{ once: true }}
+          >
+            We deliver custom software solutions that drive growth and efficiency for businesses of all sizes.
+          </motion.p>
+          <motion.div
+            className="mt-8"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ 
+              opacity: 1, 
+              y: 0,
+              transition: { 
+                duration: 0.6,
+                delay: 0.2,
+                ease: [0.16, 1, 0.3, 1]
+              }
+            }}
+            viewport={{ once: true }}
+          >
+            <Button className="bg-primary hover:bg-primary/90 text-white px-8 py-6 text-lg font-medium">
+              Get Started
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Button>
+          </motion.div>
+        </motion.div>
+      </motion.div>
+
+      {/* Why Choose Us Compact */}
+      <motion.section 
+        className="relative py-20 overflow-hidden bg-gradient-to-b from-background to-muted/20"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ 
+          opacity: 1, 
+          y: 0,
+          transition: { 
+            duration: 0.8,
+            ease: [0.16, 1, 0.3, 1]
+          }
+        }}
+        viewport={{ once: true }}
+      >
+        <ParticlesField />
+        <div className="absolute inset-0 -z-10">
+          <div className="absolute inset-0 bg-gradient-to-b from-background/90 to-muted/10" />
+        </div>
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div 
+            className="max-w-4xl mx-auto text-center mb-12"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">Why Choose NexIQ</h2>
+            <p className="text-lg text-muted-foreground">What sets us apart in delivering exceptional technology solutions</p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+            {[
+              {
+                icon: <Code className="w-6 h-6 text-primary" />,
+                title: "Expert Team",
+                description: "Our team of experienced developers and designers are experts in their respective fields."
+              },
+              {
+                icon: <Zap className="w-6 h-6 text-primary" />,
+                title: "Fast Delivery",
+                description: "We deliver high-quality solutions on time, every time."
+              },
+              {
+                icon: <Database className="w-6 h-6 text-primary" />,
+                title: "Scalable Solutions",
+                description: "Our solutions are built to grow with your business."
+              },
+              {
+                icon: <Cpu className="w-6 h-6 text-primary" />,
+                title: "Cutting-Edge Technology",
+                description: "We use the latest technologies to build modern, efficient applications."
+              }
+            ].map((item, index) => (
+              <motion.div
+                key={index}
+                className="bg-card p-6 rounded-lg shadow-sm border"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ 
+                  opacity: 1, 
+                  y: 0,
+                  transition: { 
+                    duration: 0.6,
+                    delay: index * 0.1,
+                    ease: [0.16, 1, 0.3, 1]
+                  }
+                }}
+                viewport={{ once: true, margin: "-50px 0px" }}
+              >
+                <div className="flex items-center mb-4">
+                  <div className="bg-primary/10 p-2 rounded-lg mr-4">
+                    {item.icon}
+                  </div>
+                  <h3 className="text-xl font-semibold text-foreground">{item.title}</h3>
+                </div>
+                <p className="text-muted-foreground">{item.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </motion.section>
+
+      {/* CTA Section */}
+      <section className="relative py-12 md:py-16 text-black">
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 w-full h-full object-cover filter blur-sm bg-[url('https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')] bg-cover bg-center"></div>
+        </div>
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Start Your Project?</h2>
+            <p className="text-xl mb-8 max-w-3xl mx-auto">
+              Let's discuss how we can help you achieve your business goals with our technology expertise.
+            </p>
+            <div className="flex flex-col sm:flex-row justify-center gap-4">
+              <Link href="/contact" className="w-full sm:w-auto">
+                <Button className="w-full bg-white text-black-600 hover:bg-gray-100 px-8 py-6 text-lg font-medium">
+                  Get a Free Consultation
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
