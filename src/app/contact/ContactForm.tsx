@@ -25,7 +25,7 @@ export default function ContactForm() {
 
     setIsSubmitting(true);
     try {
-      const response = await fetch('http://localhost:4000/contact', {
+      const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -41,13 +41,15 @@ export default function ContactForm() {
       });
 
       if (response.ok) {
-        toast("Thanks! We received your inquiry and will get back to you.");
+        toast.success("Thanks! We've received your inquiry and will get back to you soon.");
         formEl.reset();
       } else {
-        const errorData = await response.json();
-        toast(errorData.error || "Sorry, something went wrong. Please email us directly.");
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.error || 'Sorry, something went wrong. Please email us directly.');
       }
-    } catch (err) {
+    } catch (err: any) {
+      console.error('Contact form submission failed', err);
+      toast.error(err.message || 'Failed to submit form. Please try again later.');
       console.error("Contact form submission failed", err);
       toast("Sorry, something went wrong. Please email us directly.");
     } finally {
