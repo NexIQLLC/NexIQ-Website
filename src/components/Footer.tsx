@@ -20,7 +20,7 @@ export function Footer() {
             <p className="text-sm opacity-80 mb-4">
               Smarter IT Solutions for a Smarter Future. Empowering businesses with cutting-edge IT solutions.
             </p>
-            <p className="text-xs opacity-60">Based USA</p>
+            <p className="text-xs opacity-60">Based in USA</p>
           </div>
           
 
