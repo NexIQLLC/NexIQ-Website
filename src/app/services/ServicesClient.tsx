@@ -81,19 +81,6 @@ export default function ServicesClient() {
               <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-8 text-left">
                 We craft custom digital solutions that drive growth, efficiency, and innovation for forward-thinking businesses.
               </p>
-              <div className="flex flex-wrap gap-4">
-                <Button 
-                  variant="default" 
-                  size="lg" 
-                  className="gap-2 group"
-                  onClick={() => {
-                    const contactSection = document.getElementById('contact-section');
-                    contactSection?.scrollIntoView({ behavior: 'smooth' });
-                  }}
-                >
-                  Get Started
-                </Button>
-              </div>
             </motion.div>
 
             {/* Right side - Cubes animation */}
