@@ -96,8 +96,10 @@ export default function ServicesClient() {
       </section>
 
       {/* Services Section */}
-      <section id="services" className="py-16 bg-muted/10">
-        <ParticlesField />
+      <section id="services" className="py-16 relative overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <ParticlesField />
+        </div>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
