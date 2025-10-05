@@ -81,10 +81,6 @@ export default function ServicesClient() {
               <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-8 text-left">
                 We craft custom digital solutions that drive growth, efficiency, and innovation for forward-thinking businesses.
               </p>
-<<<<<<< HEAD
-=======
-              
->>>>>>> fc9cbae (Fix contact form API: resolve syntax errors and add multi-recipient support)
             </motion.div>
 
             {/* Right side - Cubes animation */}
