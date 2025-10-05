@@ -1,8 +1,28 @@
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
+import type { SentMessageInfo } from 'nodemailer';
+
+// Types
+interface EmailData {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone?: string;
+  domain?: string;
+  description: string;
+}
+
+interface MailOptions {
+  from: string;
+  to: string;
+  replyTo?: string;
+  subject: string;
+  text: string;
+  html: string;
+}
 
 // This is a simple in-memory store for development
-const devEmails: any[] = [];
+const devEmails: MailOptions[] = [];
 const isDev = process.env.NODE_ENV !== 'production';
 
 // Email configuration
@@ -11,8 +31,8 @@ const CONFIG = {
   SENDER_EMAIL: process.env.SMTP_USER || 'nexiqllc.info@gmail.com',
   // Recipient emails (where contact form submissions go)
   RECIPIENT_EMAILS: [
-    process.env.NEXIQ_EMAIL || 'jmakwana@nexiqllc.net',
-    'makwanajay177@gmail.com'
+    process.env.NEXIQ_EMAIL || 'spatel@nexiqllc.net',
+    'savanp@nexiqllc.net'
   ],
   // SMTP Configuration
   SMTP: {
@@ -42,6 +62,7 @@ const transporter = nodemailer.createTransport({
 
 export async function POST(request: Request) {
   try {
+    const body = await request.json() as EmailData;
     const { 
       firstName, 
       lastName, 
@@ -49,7 +70,7 @@ export async function POST(request: Request) {
       phone, 
       domain, 
       description 
-    } = await request.json();
+    } = body;
 
     // Validate required fields
     if (!firstName || !lastName || !email || !description) {
@@ -82,14 +103,15 @@ export async function POST(request: Request) {
       console.log('Verifying SMTP connection...');
       await transporter.verify();
       console.log('SMTP connection verified successfully');
-    } catch (error: any) {
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
       console.error('SMTP connection error:', error);
-      throw new Error(`Failed to connect to SMTP server: ${error.message}`);
+      throw new Error(`Failed to connect to SMTP server: ${errorMessage}`);
     }
     
     // Create admin mail promises for all recipients
     const adminMailPromises = RECIPIENT_EMAILS.map(recipient => {
-      const adminMailOptions = {
+      const adminMailOptions: MailOptions = {
         from: `NexIQ Contact Form <${SENDER_EMAIL}>`,
         to: recipient,
         replyTo: email,
@@ -187,7 +209,7 @@ This email was sent from the contact form on NexIQ website.`,
     });
 
     // User confirmation email
-    const userMailOptions = {
+    const userMailOptions: MailOptions = {
       from: `NexIQ LLC <${SENDER_EMAIL}>`,
       to: email,
       subject: `Thank You for Contacting NexIQ LLC${domain ? ' - ' + domain : ''}`,
@@ -319,17 +341,20 @@ www.nexiqllc.net
     return NextResponse.json({ 
       success: true, 
       message: 'Emails sent successfully',
-      adminEmailIds: adminResults.map(r => r.messageId),
+      adminEmailIds: adminResults.map((r: SentMessageInfo) => r.messageId),
       userEmailId: userResult.messageId,
       timestamp: new Date().toISOString()
     });
-  } catch (error: any) {
+  } catch (error) {
+    const errorMessage = error instanceof Error ? error.message : 'Failed to send message';
+    const errorStack = error instanceof Error ? error.stack : undefined;
+    
     console.error('Error in contact form submission:', error);
     return NextResponse.json(
       { 
         success: false, 
-        error: error.message || 'Failed to send message',
-        details: process.env.NODE_ENV === 'development' ? error.stack : undefined
+        error: errorMessage,
+        details: process.env.NODE_ENV === 'development' ? errorStack : undefined
       },
       { status: 500 }
     );
