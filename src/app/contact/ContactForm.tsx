@@ -47,11 +47,10 @@ export default function ContactForm() {
         const errorData = await response.json().catch(() => ({}));
         throw new Error(errorData.error || 'Sorry, something went wrong. Please email us directly.');
       }
-    } catch (err: any) {
+    } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : 'Failed to submit form. Please try again later.';
       console.error('Contact form submission failed', err);
-      toast.error(err.message || 'Failed to submit form. Please try again later.');
-      console.error("Contact form submission failed", err);
-      toast("Sorry, something went wrong. Please email us directly.");
+      toast.error(errorMessage);
     } finally {
       setIsSubmitting(false);
     }
@@ -103,5 +102,3 @@ export default function ContactForm() {
     </form>
   );
 }
-
-
