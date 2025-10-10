@@ -265,7 +265,7 @@ export default function ServicesClient() {
             <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
               Schedule a free consultation to discuss your project needs.
             </p>
-            <Button size="lg" className="gap-2 group">
+            <Button size="lg" onClick={() => window.location.href = '/contact'} className="gap-2 group">
               Get in Touch
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Button>
